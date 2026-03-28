@@ -76,7 +76,7 @@ async function startSearch() {
         const opt = document.createElement('option');
         opt.value = r.id;
         opt.dataset.label = r.label;
-        opt.textContent = `${r.label}${r.description ? ' — ' + r.description : ''}`;
+        opt.textContent = `${r.label}${r.description ? ' - ' + r.description : ''}`;
         sel.appendChild(opt);
       });
       document.getElementById('disambig').style.display = 'block';
@@ -109,7 +109,7 @@ async function loadEntity(entityId, label) {
 
     const claims = entity.claims || {};
 
-    // Birth date — P569
+    // Birth date - P569
     const birthClaims = claims['P569'];
     let birthDate = null;
     if (birthClaims && birthClaims[0]) {
@@ -117,7 +117,7 @@ async function loadEntity(entityId, label) {
       birthDate = parseWikidataDate(val);
     }
 
-    // Death date — P570
+    // Death date - P570
     const deathClaims = claims['P570'];
     let deathDate = null;
     if (deathClaims && deathClaims[0]) {
@@ -131,7 +131,7 @@ async function loadEntity(entityId, label) {
     // Name
     const name = entity.labels?.en?.value || label;
 
-    // Image — P18
+    // Image - P18
     const imageClaims = claims['P18'];
     let imageFilename = null;
     if (imageClaims && imageClaims[0]) {
@@ -215,7 +215,7 @@ async function renderResult(name, desc, birthDate, deathDate, entityId, imageFil
     if (crossedThreshold) {
       banner.classList.add('crossed');
       const daysOver = daysBetween(thresholdDate, deathDate);
-      headline.textContent = `Crossed the threshold — and kept going`;
+      headline.textContent = `Crossed the threshold - and kept going`;
       detail.textContent = `${name} passed Biden's threshold on ${formatDate(thresholdDate)} and lived a further ${daysOver.toLocaleString()} days beyond it before dying on ${formatDate(deathDate)}.`;
     } else {
       banner.classList.add('never');
@@ -270,7 +270,7 @@ async function renderResult(name, desc, birthDate, deathDate, entityId, imageFil
   const verdict = crossedThreshold
     ? (isDeceased ? 'crossed the threshold before dying' : 'has crossed the threshold')
     : (isDeceased ? 'never reached the threshold' : `reaches the threshold on ${formatDate(thresholdDate)}`);
-  const shareTitle = `${name} — The Joe Biden Threshold`;
+  const shareTitle = `${name} - The Joe Biden Threshold`;
   const shareDesc = `${name} ${verdict}. The Biden threshold is 29,829 days from birth.`;
   document.title = shareTitle;
   document.querySelector('meta[property="og:title"]').setAttribute('content', shareTitle);
