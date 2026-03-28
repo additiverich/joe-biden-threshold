@@ -293,29 +293,6 @@ function copyLink() {
   });
 }
 
-async function loadBidenPortrait() {
-  try {
-    const filename = 'Joe_Biden_presidential_portrait.jpg';
-    const url = `https://en.wikipedia.org/w/api.php?action=query&titles=File:${encodeURIComponent(filename)}&prop=imageinfo&iiprop=url&iiurlwidth=200&format=json&origin=*`;
-    const res = await fetch(url);
-    const data = await res.json();
-    const pages = data.query.pages;
-    const page = Object.values(pages)[0];
-    const thumbUrl = page?.imageinfo?.[0]?.thumburl;
-    if (thumbUrl) {
-      const portrait = document.getElementById('bidenPortrait');
-      const img = document.createElement('img');
-      img.alt = 'President Joe Biden';
-      img.src = thumbUrl;
-      img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:top center;display:block;';
-      portrait.innerHTML = '';
-      portrait.appendChild(img);
-    }
-  } catch (e) {
-    // fallback initials remain
-  }
-}
-
 // Handle enter key
 document.getElementById('nameInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') startSearch();
@@ -323,7 +300,6 @@ document.getElementById('nameInput').addEventListener('keydown', e => {
 
 // On load, check hash and auto-search
 window.addEventListener('load', () => {
-  loadBidenPortrait();
   const hash = window.location.hash.replace('#', '').trim();
   if (hash) {
     if (/^Q\d+$/i.test(hash)) {
