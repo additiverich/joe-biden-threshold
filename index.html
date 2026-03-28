@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Joe Biden Threshold</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="biden-portrait" id="bidenPortrait">
+      <span style="font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--text-faint);">JB</span>
+    </div>
+    <div class="header-text">
+      <div class="wordmark">The Joe Biden<br><em>Threshold</em></div>
+      <p class="tagline">How long until a public figure reaches the age Joe Biden was when he decided he'd had enough?</p>
+      <div class="threshold-note">⟶ 29,829 days from birth</div>
+    </div>
+  </header>
+
+  <section class="search-section">
+    <label class="search-label" for="nameInput">Search a public figure</label>
+    <div class="search-row">
+      <input type="text" id="nameInput" class="search-input" placeholder="e.g. Mick Jagger" autocomplete="off" />
+      <button class="search-btn" id="searchBtn" onclick="startSearch()">Search</button>
+    </div>
+
+    <div class="disambiguation" id="disambig">
+      <label>Multiple results — please select one</label>
+      <select id="disambigSelect"></select>
+      <button class="confirm-btn" onclick="confirmSelection()">Confirm →</button>
+    </div>
+
+    <div class="status" id="status"></div>
+  </section>
+
+  <div class="result-card" id="resultCard">
+    <div class="card-top">
+      <div class="subject-photo" id="subjectPhoto">
+        <span class="initials" id="subjectInitials"></span>
+      </div>
+      <div class="card-top-text">
+        <div class="person-name" id="personName"></div>
+        <div class="person-desc" id="personDesc"></div>
+      </div>
+    </div>
+    <div style="padding: 0 1.5rem 1.25rem;">
+      <div class="verdict-banner" id="verdictBanner">
+        <div class="verdict-headline" id="verdictHeadline"></div>
+        <div class="verdict-detail" id="verdictDetail"></div>
+      </div>
+    </div>
+    <div class="card-stats" id="cardStats"></div>
+    <div class="card-footer">
+      <a class="wikidata-link" id="wikidataLink" href="#" target="_blank">Wikidata ↗</a>
+      <button class="share-btn" onclick="copyLink()">Copy link</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p>The threshold is 29,829 days — the exact age Biden was on <a href="https://en.wikipedia.org/wiki/2024_United_States_presidential_election" target="_blank">21 July 2024</a> when he withdrew from the 2024 presidential race. Data via <a href="https://www.wikidata.org" target="_blank">Wikidata</a>. A stupid project by David Ritchie. v0.2</p>
+  </footer>
+
+</div>
+<script data-goatcounter="https://joe-biden-threshold.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
