@@ -266,6 +266,19 @@ async function renderResult(name, desc, birthDate, deathDate, entityId, imageFil
 
   document.getElementById('resultCard').classList.add('visible');
 
+  // Update social tags for result-specific sharing
+  const verdict = crossedThreshold
+    ? (isDeceased ? 'crossed the threshold before dying' : 'has crossed the threshold')
+    : (isDeceased ? 'never reached the threshold' : `reaches the threshold on ${formatDate(thresholdDate)}`);
+  const shareTitle = `${name} — The Joe Biden Threshold`;
+  const shareDesc = `${name} ${verdict}. The Biden threshold is 29,829 days from birth.`;
+  document.title = shareTitle;
+  document.querySelector('meta[property="og:title"]').setAttribute('content', shareTitle);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', shareDesc);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+  document.querySelector('meta[name="twitter:title"]').setAttribute('content', shareTitle);
+  document.querySelector('meta[name="twitter:description"]').setAttribute('content', shareDesc);
+
   if (window.goatcounter) {
     window.goatcounter.count({ path: 'search/' + entityId, title: name });
   }
